@@ -44,6 +44,8 @@ npm run dev
 
 The app will now run on http://localhost:5173/ (or a different port if Vite assigns one).
 
+---
+
 🎯 **Usage Guide**
 1️⃣ **Admin Dashboard**
 View all registered workers.
@@ -62,6 +64,8 @@ View detailed attendance history for each worker.
 4️⃣ **Dashboard Insights**
 View total workers, recent additions, attendance stats, and a leaderboard of top attendees.
 
+---
+
 👨‍💻 **Contributing**
 Contributions are welcome! If you'd like to improve this project:
 
@@ -71,8 +75,12 @@ Contributions are welcome! If you'd like to improve this project:
 4. Push to GitHub (git push origin feature-name)
 5. Submit a Pull Request
 
+---
+
 📄 **License**
 This project is licensed under the MIT License. Feel free to use and modify it.
+
+---
 
 🙌 **Acknowledgments**
 🚀 Developed by David Smart
