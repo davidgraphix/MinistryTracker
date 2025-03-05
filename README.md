@@ -1,50 +1,80 @@
-# React + TypeScript + Vite
+# 📌 MinistryTracker – Church Worker Attendance System 🏛️
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**MinistryTracker** is a modern attendance tracking system designed specifically for church workers. It helps administrators efficiently monitor worker participation, manage departmental assignments, and generate insightful attendance reports—all in one place.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 **Features**
 
-## Expanding the ESLint configuration
+✅ **Worker Management** – Add, edit, and view detailed worker profiles, including status updates.  
+✅ **Department Management** – Organize workers into departments and track department sizes.  
+✅ **Attendance Tracking** – Filter attendance by service date and access detailed records.  
+✅ **Dashboard Analytics** – View key metrics such as total workers, recent additions, attendance percentage, and a leadership board.  
+✅ **User-Friendly & Responsive** – Works seamlessly across desktops, tablets, and mobile devices.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+---
 
-- Configure the top-level `parserOptions` property like this:
+## 🛠 **Technologies Used**
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+🔹 **React + TypeScript** – For building a scalable frontend.  
+🔹 **Tailwind CSS** – For modern, responsive styling.  
+🔹 **Framer Motion** – For smooth animations.  
+🔹 **React Router** – For page navigation.
+
+---
+
+## 📥 **Installation & Setup**
+
+Follow these steps to set up the project on your local machine.
+
+### 1️⃣ **Clone the Repository**
+
+```bash
+git clone https://github.com/davidgraphix/MinistryTracker.git
+
+2️⃣ Navigate to the Project Folder
+cd MinistryTracker
+
+3️⃣ Install Dependencies
+npm install
+
+4️⃣ Start the Development Server
+npm run dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+The app will now run on http://localhost:5173/ (or a different port if Vite assigns one).
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+🎯 **Usage Guide**
+1️⃣ **Admin Dashboard**
+View all registered workers.
+Search, add, edit, or remove workers.
+Track worker status (Active, Suspended, Exited).
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+2️⃣ **Department Management**
+Assign workers to departments.
+View department size & remove workers.
+
+3️⃣ **Attendance Tracking**
+Mark attendance for services.
+Filter records by date.
+View detailed attendance history for each worker.
+
+4️⃣ **Dashboard Insights**
+View total workers, recent additions, attendance stats, and a leaderboard of top attendees.
+
+👨‍💻 **Contributing**
+Contributions are welcome! If you'd like to improve this project:
+
+1. Fork the repository
+2. Create a feature branch (git checkout -b feature-name)
+3. Commit your changes (git commit -m "Added a new feature")
+4. Push to GitHub (git push origin feature-name)
+5. Submit a Pull Request
+
+📄 **License**
+This project is licensed under the MIT License. Feel free to use and modify it.
+
+🙌 **Acknowledgments**
+🚀 Developed by David Smart
+
+🔗GitHub Profile ((https://github.com/davidgraphix/))
