@@ -1,10 +1,15 @@
+//This file is the "brain" of the application. It manages the workers and departments.
+
+// Importing React hooks and Context API
 import React, { createContext, useState } from 'react';
 
+// Define the shape of attendance records
 export interface AttendanceRecord {
   date: string;
   status: "Present" | "Absent";
 }
 
+// Define the structure of a worker
 export interface Worker {
   id: number;
   name: string;
@@ -16,6 +21,7 @@ export interface Worker {
   createdAt: string; // For new workers calculation
 }
 
+// Define the global state structure
 interface AppContextProps {
   workers: Worker[];
   setWorkers: React.Dispatch<React.SetStateAction<Worker[]>>;
@@ -23,6 +29,7 @@ interface AppContextProps {
   setDepartments: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
+// Create the context with default empty values
 export const AppContext = createContext<AppContextProps>({
   workers: [],
   setWorkers: () => {},
@@ -30,7 +37,9 @@ export const AppContext = createContext<AppContextProps>({
   setDepartments: () => {},
 });
 
+// Create the provider component
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    // Manage workers with state
   const [workers, setWorkers] = useState<Worker[]>([
     {
       id: 1,
@@ -62,6 +71,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     },
   ]);
 
+    // Manage departments with state
   const [departments, setDepartments] = useState<string[]>([
     "Choir",
     "Ushering",
