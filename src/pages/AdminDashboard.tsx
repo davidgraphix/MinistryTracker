@@ -1,4 +1,3 @@
-// src/pages/AdminDashboard.tsx
 import { useContext, useState } from "react";
 import WorkerList from "../components/WorkerList";
 import AddWorkerModal from "../components/AddWorkerModal";
