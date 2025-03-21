@@ -1,7 +1,7 @@
 // src/components/AttendanceDetailsModal.tsx
 import { motion } from "framer-motion";
 import React from "react";
-import { Worker } from "../context/AppProvider";
+import { Worker } from "../../context/AppProvider";
 
 interface AttendanceDetailsModalProps {
   worker: Worker;

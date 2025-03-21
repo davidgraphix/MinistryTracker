@@ -1,7 +1,7 @@
 // src/pages/AttendancePage.tsx
 import { useContext, useState } from "react";
 import { motion } from "framer-motion";
-import AttendanceDetailsModal from "../components/AttendanceDetailsModal";
+import AttendanceDetailsModal from "../components/DetailsModal/AttendanceDetailsModal";
 import { AppContext, Worker } from "../context/AppProvider";
 
 const AttendancePage = () => {

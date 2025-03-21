@@ -1,7 +1,7 @@
 // src/components/DepartmentDetailModal.tsx
 import { useContext } from "react";
 import { motion } from "framer-motion";
-import { AppContext, Worker } from "../context/AppProvider";
+import { AppContext, Worker } from "../../context/AppProvider";
 
 interface DepartmentDetailModalProps {
   department: string;

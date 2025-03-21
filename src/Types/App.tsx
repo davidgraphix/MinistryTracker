@@ -1,11 +1,11 @@
 // src/App.tsx
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Dashboard from "./pages/Dashboard";
-import AdminDashboard from "./pages/AdminDashboard";
-import AttendancePage from "./pages/AttendancePage";
-import DepartmentsPage from "./pages/DepartmentsPage";
-import { AppProvider } from "./context/AppProvider";
-import Layout from "./components/Layout";
+import Dashboard from "../Dashboards/Dashboard";
+import AdminDashboard from "../Dashboards/AdminDashboard";
+import AttendancePage from "../pages/AttendancePage";
+import DepartmentsPage from "../pages/DepartmentsPage";
+import { AppProvider } from "../context/AppProvider";
+import Layout from "../components/Routes/Layout";
 
 function App() {
   return (

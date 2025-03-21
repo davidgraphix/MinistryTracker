@@ -34,7 +34,7 @@ const Dashboard = () => {
     const bPresents = b.attendanceRecords.filter((rec) => rec.status === "Present").length;
     return bPresents - aPresents;
   });
-  const topFive = sortedByAttendance.slice(0, 5);
+  const topThirty = sortedByAttendance.slice(0, 30);
 
   return (
     <div className="flex h-screen bg-gray-100">
@@ -122,7 +122,7 @@ const Dashboard = () => {
                 </tr>
               </thead>
               <tbody>
-                {topFive.map((worker, index) => {
+                {topThirty.map((worker, index) => {
                   const presents = worker.attendanceRecords.filter(rec => rec.status === "Present").length;
                   const absents = worker.attendanceRecords.filter(rec => rec.status === "Absent").length;
                   return (

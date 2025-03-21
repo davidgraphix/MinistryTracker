@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { AppContext, Worker } from "../context/AppProvider";
+import { AppContext, Worker } from "../../context/AppProvider";
 import { FaChevronDown } from "react-icons/fa";
 
 interface WorkerListProps {

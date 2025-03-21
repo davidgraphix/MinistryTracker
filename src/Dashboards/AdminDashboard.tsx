@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
-import WorkerList from "../components/WorkerList";
-import AddWorkerModal from "../components/AddWorkerModal";
+import WorkerList from "../components/DetailsModal/WorkerList";
+import AddWorkerModal from "../components/Add/AddWorkerModal";
 import { AppContext } from "../context/AppProvider";
 import { FaChevronDown } from "react-icons/fa";
 

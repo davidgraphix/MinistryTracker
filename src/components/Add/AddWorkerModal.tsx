@@ -1,10 +1,12 @@
 // src/components/AddWorkerModal.tsx
 import { useContext, useState } from "react";
-import { AppContext } from "../context/AppProvider";
+import { AppContext } from "../../context/AppProvider";
 
 interface AddWorkerModalProps {
   closeModal: () => void;
 }
+
+
 
 const AddWorkerModal: React.FC<AddWorkerModalProps> = ({ closeModal }) => {
   const { workers, setWorkers, departments } = useContext(AppContext);

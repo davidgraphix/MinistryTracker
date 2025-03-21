@@ -1,7 +1,7 @@
 // src/pages/DepartmentsPage.tsx
 import { useContext, useState } from "react";
 import { AppContext } from "../context/AppProvider";
-import DepartmentDetailModal from "../components/DepartmentDetailModal";
+import DepartmentDetailModal from "../components/DetailsModal/DepartmentDetailModal";
 
 const DepartmentsPage = () => {
   const { departments, setDepartments, workers } = useContext(AppContext);
