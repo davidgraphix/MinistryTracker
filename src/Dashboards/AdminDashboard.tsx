@@ -2,13 +2,11 @@ import { useContext, useState } from "react";
 import WorkerList from "../components/DetailsModal/WorkerList";
 import AddWorkerModal from "../components/Add/AddWorkerModal";
 import { AppContext } from "../context/AppProvider";
-import { FaChevronDown } from "react-icons/fa";
 
 const AdminDashboard = () => {
   const { workers, setWorkers } = useContext(AppContext);
   const [searchTerm, setSearchTerm] = useState("");
   const [isWorkerModalOpen, setIsWorkerModalOpen] = useState(false);
-  const [addDropdownOpen, setAddDropdownOpen] = useState(false);
 
   const filteredWorkers = workers.filter(worker =>
     worker.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -29,12 +27,14 @@ const AdminDashboard = () => {
             />
             <div className="relative">
               <button 
-                onClick={() => setAddDropdownOpen(prev => !prev)}
                 className="bg-blue-500 text-white px-3 py-1 rounded flex items-center transition-all duration-300 hover:scale-105"
+                onClick={() => {
+                  setIsWorkerModalOpen(true);
+                }}
               >
-                Add <FaChevronDown className="ml-2" />
+                Add 
               </button>
-              {addDropdownOpen && (
+              {/* {addDropdownOpen && (
                 <div className="absolute right-0 mt-2 w-40 bg-white shadow-lg rounded">
                   <button 
                     className="block w-full text-left px-4 py-2 hover:bg-gray-200"
@@ -46,7 +46,7 @@ const AdminDashboard = () => {
                     Add Worker
                   </button>
                 </div>
-              )}
+              )} */}
             </div>
           </div>
         </div>
