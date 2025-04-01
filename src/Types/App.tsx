@@ -6,6 +6,7 @@ import AttendancePage from "../pages/AttendancePage";
 import DepartmentsPage from "../pages/DepartmentsPage";
 import { AppProvider } from "../context/AppProvider";
 import Layout from "../components/Routes/Layout";
+import LoginPage from "../Login/LoginPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/workers" element={<AdminDashboard />} />
             <Route path="/attendance" element={<AttendancePage />} />
             <Route path="/departments" element={<DepartmentsPage />} />
+            <Route path="/login" element={<LoginPage />} />
           </Routes>
         </Layout>
       </Router>
