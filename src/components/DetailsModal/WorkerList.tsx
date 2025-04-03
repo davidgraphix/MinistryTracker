@@ -8,13 +8,15 @@ interface WorkerListProps {
 }
 
 const WorkerList: React.FC<WorkerListProps> = ({ workers, setWorkers }) => {
-  const [activeActionDropdown, setActiveActionDropdown] = useState<number | null>(null);
+  const [activeActionDropdown, setActiveActionDropdown] = useState<
+    number | null
+  >(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [workerToEdit, setWorkerToEdit] = useState<Worker | null>(null);
 
   const handleAction = (workerId: number, action: string) => {
-    setWorkers(prevWorkers =>
-      prevWorkers.map(worker => {
+    setWorkers((prevWorkers) =>
+      prevWorkers.map((worker) => {
         if (worker.id === workerId) {
           switch (action) {
             case "Edit":
@@ -23,7 +25,7 @@ const WorkerList: React.FC<WorkerListProps> = ({ workers, setWorkers }) => {
               break;
             case "Suspend":
               return { ...worker, status: "Suspended" };
-              case "Block":
+            case "Block":
               return { ...worker, status: "Blocked" };
             case "Active":
               return { ...worker, status: "Active" };
@@ -45,8 +47,8 @@ const WorkerList: React.FC<WorkerListProps> = ({ workers, setWorkers }) => {
     const [editedWorker, setEditedWorker] = useState(workerToEdit);
 
     const saveEdit = () => {
-      setWorkers(prev =>
-        prev.map(worker =>
+      setWorkers((prev) =>
+        prev.map((worker) =>
           worker.id === editedWorker.id ? editedWorker : worker
         )
       );
@@ -61,20 +63,35 @@ const WorkerList: React.FC<WorkerListProps> = ({ workers, setWorkers }) => {
           <input
             type="text"
             placeholder="Name"
-            value={editedWorker.name}
-            onChange={(e) => setEditedWorker({ ...editedWorker, name: e.target.value })}
+            value={editedWorker.firstName}
+            onChange={(e) =>
+              setEditedWorker({ ...editedWorker, firstName: e.target.value })
+            }
+            className="w-full p-2 border rounded mb-2"
+          />
+          <input
+            type="text"
+            placeholder="Name"
+            value={editedWorker.lastName}
+            onChange={(e) =>
+              setEditedWorker({ ...editedWorker, lastName: e.target.value })
+            }
             className="w-full p-2 border rounded mb-2"
           />
           <input
             type="email"
             placeholder="Email"
             value={editedWorker.email}
-            onChange={(e) => setEditedWorker({ ...editedWorker, email: e.target.value })}
+            onChange={(e) =>
+              setEditedWorker({ ...editedWorker, email: e.target.value })
+            }
             className="w-full p-2 border rounded mb-2"
           />
           <select
             value={editedWorker.department}
-            onChange={(e) => setEditedWorker({ ...editedWorker, department: e.target.value })}
+            onChange={(e) =>
+              setEditedWorker({ ...editedWorker, department: e.target.value })
+            }
             className="w-full p-2 border rounded mb-2"
           >
             <option value="">Select Department</option>
@@ -88,14 +105,22 @@ const WorkerList: React.FC<WorkerListProps> = ({ workers, setWorkers }) => {
             type="text"
             placeholder="Phone"
             value={editedWorker.phone}
-            onChange={(e) => setEditedWorker({ ...editedWorker, phone: e.target.value })}
+            onChange={(e) =>
+              setEditedWorker({ ...editedWorker, phone: e.target.value })
+            }
             className="w-full p-2 border rounded mb-2"
           />
           <div className="flex justify-between">
-            <button className="bg-red-500 text-white px-3 py-1 rounded" onClick={() => setIsEditModalOpen(false)}>
+            <button
+              className="bg-red-500 text-white px-3 py-1 rounded"
+              onClick={() => setIsEditModalOpen(false)}
+            >
               Cancel
             </button>
-            <button className="bg-blue-500 text-white px-3 py-1 rounded" onClick={saveEdit}>
+            <button
+              className="bg-blue-500 text-white px-3 py-1 rounded"
+              onClick={saveEdit}
+            >
               Save
             </button>
           </div>
@@ -119,32 +144,40 @@ const WorkerList: React.FC<WorkerListProps> = ({ workers, setWorkers }) => {
           </tr>
         </thead>
         <tbody>
-          {workers.map(worker => (
+          {workers.map((worker) => (
             <tr key={worker.id} className="border-b">
               <td className="p-3">{worker.id}</td>
-              <td className="p-3">{worker.name}</td>
+              <td className="p-3">
+                {worker.firstName}{" "} {worker.lastName}
+              </td>
               <td className="p-3">{worker.email}</td>
               <td className="p-3">{worker.department}</td>
               <td className="p-3">{worker.phone}</td>
               <td className="p-3">{worker.status}</td>
               <td className="p-3">
-                <button 
-                  onClick={() => setActiveActionDropdown(prev => prev === worker.id ? null : worker.id)}
+                <button
+                  onClick={() =>
+                    setActiveActionDropdown((prev) =>
+                      prev === worker.id ? null : worker.id
+                    )
+                  }
                   className="bg-gray-500 text-white px-3 py-1 rounded flex items-center transition-all duration-300 hover:scale-105"
                 >
                   Actions <FaChevronDown className="ml-1" />
                 </button>
                 {activeActionDropdown === worker.id && (
                   <div className="absolute z-10 mt-2 w-32 bg-white shadow-lg rounded max-h-40 overflow-y-auto">
-                    {["Edit", "Suspend", "Block", "Active", "Exited"].map(action => (
-                      <button
-                        key={action}
-                        onClick={() => handleAction(worker.id, action)}
-                        className="block w-full text-left px-4 py-2 hover:bg-gray-200"
-                      >
-                        {action}
-                      </button>
-                    ))}
+                    {["Edit", "Suspend", "Block", "Active", "Exited"].map(
+                      (action) => (
+                        <button
+                          key={action}
+                          onClick={() => handleAction(worker.id, action)}
+                          className="block w-full text-left px-4 py-2 hover:bg-gray-200"
+                        >
+                          {action}
+                        </button>
+                      )
+                    )}
                   </div>
                 )}
               </td>
