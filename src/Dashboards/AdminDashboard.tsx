@@ -9,7 +9,7 @@ const AdminDashboard = () => {
   const [isWorkerModalOpen, setIsWorkerModalOpen] = useState(false);
 
   const filteredWorkers = workers.filter(worker =>
-    worker.name.toLowerCase().includes(searchTerm.toLowerCase())
+    worker.firstName.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
