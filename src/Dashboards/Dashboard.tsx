@@ -160,7 +160,11 @@ const Dashboard = () => {
                   return (
                     <tr key={worker.id} className="border-b">
                       <td className="py-2 px-4">{index + 1}</td>
-                      <td className="py-2 px-4">{worker.name}</td>
+                      <td className="py-2 px-4">
+                        {worker.firstName}
+                        {" "}
+                        {worker.lastName}
+                      </td>
                       <td className="py-2 px-4">{worker.department}</td>
                       <td className="py-2 px-4">{presents}</td>
                       <td className="py-2 px-4">{absents}</td>
