@@ -36,7 +36,7 @@ const DepartmentDetailModal: React.FC<DepartmentDetailModalProps> = ({ departmen
             {deptWorkers.map((worker: Worker) => (
               <li key={worker.id} className="p-2 border rounded flex justify-between items-center">
                 <div>
-                  <p className="font-medium">{worker.name}</p>
+                  <p className="font-medium">{worker.firstName}{worker.lastName}</p>
                   <p className="text-sm text-gray-600">{worker.email}</p>
                 </div>
                 <button
