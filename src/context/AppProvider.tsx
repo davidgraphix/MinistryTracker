@@ -1,7 +1,7 @@
 //This file is the "brain" of the application. It manages the workers and departments.
 
 // Importing React hooks and Context API
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState } from "react";
 
 // Define the shape of attendance records
 export interface AttendanceRecord {
@@ -12,7 +12,8 @@ export interface AttendanceRecord {
 // Define the structure of a worker
 export interface Worker {
   id: number;
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   department: string;
   phone: string;
@@ -38,13 +39,16 @@ export const AppContext = createContext<AppContextProps>({
 });
 
 // Create the provider component
-export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    // Manage workers with state
+export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  // Manage workers with state
   const [workers, setWorkers] = useState<Worker[]>([
     {
       id: 1,
-      name: "David Smart",
-      email: "david@example.com",
+      firstName: "Jeremiah",
+      lastName: "Ayeni",
+      email: "jerry@example.com",
       department: "Media",
       phone: "123-456-7890",
       status: "Active",
@@ -57,8 +61,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     },
     {
       id: 2,
-      name: "Smart Smith",
-      email: "smart@example.com",
+      firstName: "Ononobi",
+      lastName: "Praise",
+
+      email: "praise@gmail.com",
       department: "Ushering",
       phone: "987-654-3210",
       status: "Suspended",
@@ -71,7 +77,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     },
   ]);
 
-    // Manage departments with state
+  // Manage departments with state
   const [departments, setDepartments] = useState<string[]>([
     "Choir",
     "Ushering",
@@ -83,7 +89,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   ]);
 
   return (
-    <AppContext.Provider value={{ workers, setWorkers, departments, setDepartments }}>
+    <AppContext.Provider
+      value={{ workers, setWorkers, departments, setDepartments }}
+    >
       {children}
     </AppContext.Provider>
   );
