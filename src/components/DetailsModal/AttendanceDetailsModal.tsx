@@ -16,7 +16,7 @@ const AttendanceDetailsModal: React.FC<AttendanceDetailsModalProps> = ({ worker,
         animate={{ scale: 1 }}
         className="bg-white p-5 rounded-lg shadow-lg w-11/12 md:w-3/4 lg:w-1/2"
       >
-        <h3 className="text-xl font-bold mb-3">Attendance Details for {worker.name}</h3>
+        <h3 className="text-xl font-bold mb-3">Attendance Details for {worker.firstName} {worker.lastName}</h3>
         <p>
           <strong>Department:</strong> {worker.department}
         </p>
