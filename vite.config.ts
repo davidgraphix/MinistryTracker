@@ -4,4 +4,13 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://missing-britta-ayenijeremiaho-cb384dc8.koyeb.app/auth/admin/login',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      },
+    },
+  },
 })
