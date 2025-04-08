@@ -48,7 +48,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
       id: 1,
       firstName: "Jeremiah",
       lastName: "Ayeni",
-      email: "jerry@example.com",
+      email: "Ayenijerry@gmail.com",
       department: "Media",
       phone: "123-456-7890",
       status: "Active",

@@ -23,7 +23,7 @@ function LoginPage({ onLogin }: LoginPageProps) {
         <div className="text-center">
           <LogIn className="mx-auto h-12 w-12 text-indigo-600" />
           <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
-            Admin Login
+            DC Admin Login
           </h2>
           <p className="mt-2 text-sm text-gray-600">
             Enter your credentials to access the admin dashboard
