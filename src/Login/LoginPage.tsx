@@ -9,12 +9,37 @@ function LoginPage({ onLogin }: LoginPageProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Login attempt:", { email, password });
-    // Simulate successful login
-    onLogin();
+  
+    try {
+      const res = await fetch("https://missing-britta-ayenijeremiaho-cb384dc8.koyeb.app/auth/admin/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+  
+      if (!res.ok) {
+        const errData = await res.json();
+        throw new Error(errData.message || "Login failed");
+      }
+  
+      const data = await res.json();
+      localStorage.setItem("admin_token", data.token);
+      console.log("Login success:", data);
+      onLogin(); 
+  
+    } catch (error: any) {
+      console.error("Login error:", error.message);
+      alert(error.message || "Login failed");
+    }
   };
+  
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
