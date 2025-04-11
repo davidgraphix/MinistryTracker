@@ -3,15 +3,21 @@ import { useContext } from "react";
 import { motion } from "framer-motion";
 import { AppContext, Worker } from "../../context/AppProvider";
 
+interface Department {
+  id: string;
+  name: string;
+}
+
 interface DepartmentDetailModalProps {
-  department: string;
+  department: Department; // Updated to accept an object with id and name
   onClose: () => void;
 }
 
 const DepartmentDetailModal: React.FC<DepartmentDetailModalProps> = ({ department, onClose }) => {
   const { workers, setWorkers } = useContext(AppContext);
 
-  const deptWorkers = workers.filter(worker => worker.department === department);
+  // Filter workers based on the department name
+  const deptWorkers = workers.filter(worker => worker.department === department.name);
 
   const removeWorkerFromDepartment = (workerId: number) => {
     setWorkers(prevWorkers =>
@@ -28,7 +34,7 @@ const DepartmentDetailModal: React.FC<DepartmentDetailModalProps> = ({ departmen
         animate={{ scale: 1 }}
         className="bg-white p-5 rounded-lg shadow-lg w-11/12 md:w-3/4 lg:w-1/2"
       >
-        <h3 className="text-xl font-bold mb-3">Workers in {department}</h3>
+        <h3 className="text-xl font-bold mb-3">Workers in {department.name}</h3>
         {deptWorkers.length === 0 ? (
           <p>No workers in this department.</p>
         ) : (
@@ -36,7 +42,7 @@ const DepartmentDetailModal: React.FC<DepartmentDetailModalProps> = ({ departmen
             {deptWorkers.map((worker: Worker) => (
               <li key={worker.id} className="p-2 border rounded flex justify-between items-center">
                 <div>
-                  <p className="font-medium">{worker.firstName}{worker.lastName}</p>
+                  <p className="font-medium">{worker.firstName} {worker.lastName}</p>
                   <p className="text-sm text-gray-600">{worker.email}</p>
                 </div>
                 <button

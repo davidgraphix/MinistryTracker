@@ -2,23 +2,19 @@
 import { useContext, useState } from "react";
 import { AppContext } from "../context/AppProvider";
 import DepartmentDetailModal from "../components/DetailsModal/DepartmentDetailModal";
+import AddDepartmentModal from "../components/Add/AddDepartmentModal";
 
 const DepartmentsPage = () => {
-  const { departments, setDepartments, workers } = useContext(AppContext);
-  const [showAddDeptForm, setShowAddDeptForm] = useState(false);
-  const [newDept, setNewDept] = useState("");
-  const [selectedDept, setSelectedDept] = useState<string | null>(null);
+  const { departments, workers } = useContext(AppContext);
+  const [showAddDeptModal, setShowAddDeptModal] = useState(false);
+  const [selectedDept, setSelectedDept] = useState<{
+    id: string;
+    name: string;
+    description: string;
+  } | null>(null);
 
-  const addDepartment = () => {
-    if (newDept && !departments.includes(newDept)) {
-      setDepartments([...departments, newDept]);
-      setNewDept("");
-      setShowAddDeptForm(false);
-    }
-  };
-
-  const getWorkerCountForDept = (dept: string) => {
-    return workers.filter((worker) => worker.department === dept).length;
+  const getWorkerCountForDept = (deptName: string) => {
+    return workers.filter((worker) => worker.department === deptName).length;
   };
 
   return (
@@ -28,43 +24,32 @@ const DepartmentsPage = () => {
           <h2 className="text-2xl font-bold">Departments</h2>
           <button
             className="bg-green-500 text-white px-3 py-1 rounded transition-all duration-300 hover:scale-105"
-            onClick={() => setShowAddDeptForm((prev) => !prev)}
+            onClick={() => setShowAddDeptModal(true)}
           >
             Add Department
           </button>
         </div>
-        {showAddDeptForm && (
-          <div className="mb-4 flex gap-2">
-            <input
-              type="text"
-              placeholder="Department Name"
-              className="w-full p-2 border rounded"
-              value={newDept}
-              onChange={(e) => setNewDept(e.target.value)}
-            />
-            <button
-              className="bg-blue-500 text-white px-3 py-1 rounded"
-              onClick={addDepartment}
-            >
-              Add
-            </button>
-          </div>
-        )}
         <ul className="space-y-2">
-          {departments.map((dept, index) => (
+          {departments.map((dept) => (
             <li
-              key={index}
+              key={dept.id}
               className="p-2 border rounded flex justify-between items-center cursor-pointer hover:bg-gray-100 transition-colors duration-200"
               onClick={() => setSelectedDept(dept)}
             >
-              <span className="font-medium">{dept}</span>
+              <div>
+                <p className="font-medium">{dept.name}</p>
+                <p className="text-sm text-gray-600">{dept.description}</p>
+              </div>
               <span className="bg-gray-200 text-gray-700 px-2 py-1 rounded">
-                {getWorkerCountForDept(dept)}
+                {getWorkerCountForDept(dept.name)}
               </span>
             </li>
           ))}
         </ul>
       </main>
+      {showAddDeptModal && (
+        <AddDepartmentModal closeModal={() => setShowAddDeptModal(false)} />
+      )}
       {selectedDept && (
         <DepartmentDetailModal
           department={selectedDept}

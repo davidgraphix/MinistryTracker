@@ -25,12 +25,10 @@ const WorkerList: React.FC<WorkerListProps> = ({ workers, setWorkers }) => {
               break;
             case "Suspend":
               return { ...worker, status: "Suspended" };
-            case "Block":
-              return { ...worker, status: "Blocked" };
+            case "Inactive":
+              return { ...worker, status: "Inactive" };
             case "Active":
               return { ...worker, status: "Active" };
-            case "Exited":
-              return { ...worker, status: "Exited" };
             default:
               break;
           }
@@ -96,8 +94,8 @@ const WorkerList: React.FC<WorkerListProps> = ({ workers, setWorkers }) => {
           >
             <option value="">Select Department</option>
             {departments.map((dept, index) => (
-              <option key={index} value={dept}>
-                {dept}
+              <option key={index} value={String(dept)}>
+                {String(dept)}
               </option>
             ))}
           </select>
@@ -167,7 +165,7 @@ const WorkerList: React.FC<WorkerListProps> = ({ workers, setWorkers }) => {
                 </button>
                 {activeActionDropdown === worker.id && (
                   <div className="absolute z-10 mt-2 w-32 bg-white shadow-lg rounded max-h-40 overflow-y-auto">
-                    {["Edit", "Suspend", "Block", "Active", "Exited"].map(
+                    {["Edit", "Active", "Suspend", "Inactive"].map(
                       (action) => (
                         <button
                           key={action}

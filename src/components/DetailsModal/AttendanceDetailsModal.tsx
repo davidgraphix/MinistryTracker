@@ -1,14 +1,20 @@
 // src/components/AttendanceDetailsModal.tsx
 import { motion } from "framer-motion";
-import React from "react";
-import { Worker } from "../../context/AppProvider";
+import React, { useContext } from "react";
+import { AppContext, Worker } from "../../context/AppProvider";
 
 interface AttendanceDetailsModalProps {
   worker: Worker;
   closeModal: () => void;
 }
 
-const AttendanceDetailsModal: React.FC<AttendanceDetailsModalProps> = ({ worker, closeModal }) => {
+const AttendanceDetailsModal: React.FC<AttendanceDetailsModalProps> = ({
+  worker,
+  closeModal,
+}) => {
+  const { departments } = useContext(AppContext);
+  const department = departments.find((dept) => dept.name === worker.department);
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
       <motion.div
@@ -16,10 +22,17 @@ const AttendanceDetailsModal: React.FC<AttendanceDetailsModalProps> = ({ worker,
         animate={{ scale: 1 }}
         className="bg-white p-5 rounded-lg shadow-lg w-11/12 md:w-3/4 lg:w-1/2"
       >
-        <h3 className="text-xl font-bold mb-3">Attendance Details for {worker.firstName} {worker.lastName}</h3>
+        <h3 className="text-xl font-bold mb-3">
+          Attendance Details for {worker.firstName} {worker.lastName}
+        </h3>
         <p>
           <strong>Department:</strong> {worker.department}
         </p>
+        {department?.description && (
+          <p>
+            <strong>Department Description:</strong> {department.description}
+          </p>
+        )}
         <p>
           <strong>Phone:</strong> {worker.phone}
         </p>
@@ -39,7 +52,13 @@ const AttendanceDetailsModal: React.FC<AttendanceDetailsModalProps> = ({ worker,
               {worker.attendanceRecords.map((record, index) => (
                 <tr key={index}>
                   <td className="p-1 border-b">{record.date}</td>
-                  <td className={`p-1 border-b ${record.status === "Present" ? "text-green-600" : "text-red-600"}`}>
+                  <td
+                    className={`p-1 border-b ${
+                      record.status === "Present"
+                        ? "text-green-600"
+                        : "text-red-600"
+                    }`}
+                  >
                     {record.status}
                   </td>
                 </tr>
@@ -48,7 +67,10 @@ const AttendanceDetailsModal: React.FC<AttendanceDetailsModalProps> = ({ worker,
           </table>
         </div>
         <div className="flex justify-end mt-4">
-          <button className="bg-red-500 text-white px-3 py-1 rounded" onClick={closeModal}>
+          <button
+            className="bg-red-500 text-white px-3 py-1 rounded"
+            onClick={closeModal}
+          >
             Close
           </button>
         </div>

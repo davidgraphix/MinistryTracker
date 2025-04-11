@@ -25,7 +25,7 @@ const Dashboard = () => {
   }, [workers]);
 
   const activeWorkers = workers.filter((w) => w.status === "Active").length;
-  const blockedWorkers = workers.filter((w) => w.status === "Blocked").length;
+  const inactiveWorkers = workers.filter((w) => w.status === "Inactive").length;
   const suspendedWorkers = workers.filter(
     (w) => w.status === "Suspended"
   ).length;
@@ -110,8 +110,8 @@ const Dashboard = () => {
               <FaTimesCircle />
             </div>
             <div>
-              <h2 className="text-xl font-bold">Blocked</h2>
-              <p className="text-2xl">{blockedWorkers}</p>
+              <h2 className="text-xl font-bold">Inactive</h2>
+              <p className="text-2xl">{inactiveWorkers}</p>
             </div>
           </motion.div>
           <motion.div className="bg-white rounded shadow p-4 flex items-center transition-all duration-300 hover:scale-105">

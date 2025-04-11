@@ -8,9 +8,11 @@ interface LoginPageProps {
 function LoginPage({ onLogin }: LoginPageProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
   
     try {
       const res = await fetch("https://missing-britta-ayenijeremiaho-cb384dc8.koyeb.app/auth/admin/login", {
@@ -30,7 +32,8 @@ function LoginPage({ onLogin }: LoginPageProps) {
       }
   
       const data = await res.json();
-      localStorage.setItem("admin_token", data.token);
+      localStorage.setItem("admin_token", data.data.access_token);
+
       console.log("Login success:", data);
       onLogin(); 
   
@@ -107,11 +110,12 @@ function LoginPage({ onLogin }: LoginPageProps) {
 
           {/* Submit Button */}
           <div>
-            <button
+          <button
               type="submit"
-              className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200"
+              disabled={loading}
+              className={`group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white ${loading ? "bg-gray-400" : "bg-indigo-600 hover:bg-indigo-700"} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200`}
             >
-              Sign in
+              {loading ? "Signing in..." : "Sign in"}
             </button>
           </div>
         </form>

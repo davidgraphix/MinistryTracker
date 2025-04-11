@@ -55,7 +55,7 @@ const AttendancePage = () => {
                   animate={{ opacity: 1 }}
                 >
                   <td className="p-3">{worker.id}</td>
-                  <td className="p-3">{worker.name}</td>
+                  <td className="p-3">{worker.firstName} {" "} {worker.lastName}</td>
                   <td className="p-3">{worker.department}</td>
                   <td className="p-3">{worker.phone}</td>
                   <td className="p-3">{worker.status}</td>
